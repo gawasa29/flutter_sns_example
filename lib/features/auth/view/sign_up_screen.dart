@@ -86,10 +86,17 @@ class SignUpScreen extends ConsumerWidget {
                             child: const Text('Sign up'),
                           ),
                         ),
+                        const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
-                          child: ElevatedButton(
-                            child: const Text('Google'),
+                          child: ElevatedButton.icon(
+                            icon: Image.asset(
+                              'assets/images/google_logo.png',
+                              height: 30,
+                            ), // Google logo
+                            label: const Text(
+                              'Sign in with Google',
+                            ), // Button label
                             onPressed: () async {
                               await authCommand.signInGoogleEvent(
                                 context: context,
