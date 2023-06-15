@@ -15,6 +15,7 @@ dependencies:
   cloud_firestore: any
   firebase_storage: any
   cloud_functions: any
+  google_sign_in: any
 
   ###  State Management  ###
   flutter_riverpod: any
@@ -33,6 +34,7 @@ dependencies:
   flutterfire_ui: any
   detectable_text_field: any
   shimmer: any
+  fluttertoast: any
 
 
 dev_dependencies:
