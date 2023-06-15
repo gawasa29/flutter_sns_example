@@ -47,7 +47,7 @@
 		<true />
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
-		<!-- googleの認証で記載: -->
+		<!-- googleの認証で記載: ここから -->
 		<key>CFBundleURLTypes</key>
 		<array>
 			<dict>
@@ -61,5 +61,6 @@
 				</array>
 			</dict>
 		</array>
+		<!-- googleの認証で記載: ここまで -->
 	</dict>
 </plist>
