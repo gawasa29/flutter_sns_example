@@ -12,6 +12,7 @@ class SignInScreen extends ConsumerWidget {
   static const routePath = '/SignIn';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('📱 SignInScreen !!! ');
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final formKey = GlobalKey<FormState>();

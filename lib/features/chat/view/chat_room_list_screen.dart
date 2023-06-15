@@ -5,6 +5,7 @@ class ChatRoomListScreen extends StatelessWidget {
   static const routePath = '/ChatRoomList';
   @override
   Widget build(BuildContext context) {
+    print('📱 ChatRoomListScreen !!! ');
     return Scaffold(
       appBar: AppBar(),
       body: const Column(

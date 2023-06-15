@@ -22,7 +22,7 @@ final routerProvider = Provider(
       navigatorKey: ref.watch(rootNavigatorKey),
       initialLocation: SignUpScreen.routePath,
       redirect: (context, state) {
-        print('🐯 GoRouter redirect IN !!! ');
+        print('🛜 GoRouter redirect IN !!! ');
         // もし認証状態がロード中またはエラーが発生していれば、リダイレクトは行わない。
         if (authState.isLoading || authState.hasError) return null;
         // この時点で hasData==trueであること、すなわち、認証状態が読み取り可能な値であることを保証する。

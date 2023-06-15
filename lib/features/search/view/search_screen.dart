@@ -5,6 +5,7 @@ class SearchScreen extends StatelessWidget {
   static const routePath = '/Search';
   @override
   Widget build(BuildContext context) {
+    print('📱 SearchScreen !!! ');
     return Scaffold(
       appBar: AppBar(),
       body: const Column(

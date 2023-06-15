@@ -7,6 +7,7 @@ class ProfileScreen extends ConsumerWidget {
   static const routePath = '/Profile';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('📱 ProfileScreen !!! ');
     return Scaffold(
       appBar: AppBar(
         actions: [

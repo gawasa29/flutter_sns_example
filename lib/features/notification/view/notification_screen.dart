@@ -5,6 +5,7 @@ class NotificationScreen extends StatelessWidget {
   static const routePath = '/Notification';
   @override
   Widget build(BuildContext context) {
+    print('📱 NotificationScreen !!! ');
     return Scaffold(
       appBar: AppBar(),
       body: const Column(

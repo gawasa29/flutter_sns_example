@@ -12,6 +12,7 @@ class ForgottenPasswordScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('📱 ForgottenPasswordScreen !!! ');
     final state = ref.watch(authAsyncNotifierCommand);
     final authCommand = ref.read(authAsyncNotifierCommand.notifier);
     final emailController = TextEditingController();

@@ -5,6 +5,7 @@ class HomeScreen extends StatelessWidget {
   static const routePath = '/Home';
   @override
   Widget build(BuildContext context) {
+    print('📱 HomeScreen !!! ');
     return Scaffold(
       appBar: AppBar(),
       body: const Column(
