@@ -11,7 +11,6 @@ import 'package:flutter_sns_example/features/auth/repo/sign_in_email.dart';
 import 'package:flutter_sns_example/features/auth/repo/sign_in_google.dart';
 import 'package:flutter_sns_example/features/auth/repo/sign_out.dart';
 import 'package:flutter_sns_example/features/auth/repo/sign_up_email.dart';
-import 'package:flutter_sns_example/features/post/view/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final authAsyncNotifierCommand = AsyncNotifierProvider<AuthCommand, void>(() {
@@ -35,14 +34,8 @@ class AuthCommand extends AsyncNotifier<void> {
       await signUpEmail(
         email: email,
         password: password,
-      ); // this future can fail
+      );
       state = const AsyncValue.data(null);
-
-      if (!state.isLoading && !state.hasError) {
-        if (context.mounted) {
-          context.go(HomeScreen.routePath);
-        }
-      }
     } on FirebaseAuthException catch (err) {
       final errorMessage = FirebaseAuthErrorExt.fromCode(err.code).message;
       await toast(errorMessage);
@@ -59,12 +52,6 @@ class AuthCommand extends AsyncNotifier<void> {
       state = const AsyncLoading();
       await signInEmail(email: email, password: password);
       state = const AsyncValue.data(null);
-
-      if (!state.isLoading && !state.hasError) {
-        if (context.mounted) {
-          context.go(HomeScreen.routePath);
-        }
-      }
     } on FirebaseAuthException catch (err) {
       final errorMessage = FirebaseAuthErrorExt.fromCode(err.code).message;
       await toast(errorMessage);
@@ -79,12 +66,6 @@ class AuthCommand extends AsyncNotifier<void> {
       state = const AsyncLoading();
       await signInGoogle();
       state = const AsyncValue.data(null);
-
-      if (!state.isLoading && !state.hasError) {
-        if (context.mounted) {
-          context.go(HomeScreen.routePath);
-        }
-      }
     } on FirebaseAuthException catch (err) {
       final errorMessage = FirebaseAuthErrorExt.fromCode(err.code).message;
       await toast(errorMessage);
