@@ -22,7 +22,7 @@ final routerProvider = Provider(
       navigatorKey: ref.watch(rootNavigatorKey),
       initialLocation: SignUpScreen.routePath,
       redirect: (context, state) {
-        print('🐯 redirect IN !!! ');
+        print('🐯 GoRouter redirect IN !!! ');
         // もし認証状態がロード中またはエラーが発生していれば、リダイレクトは行わない。
         if (authState.isLoading || authState.hasError) return null;
         // この時点で hasData==trueであること、すなわち、認証状態が読み取り可能な値であることを保証する。
@@ -41,9 +41,12 @@ final routerProvider = Provider(
             return HomeScreen.routePath;
           }
         } else {
-          // ユーザーがログインしていない場合、
-          // SignUpScreenにリダイレクトします。
-          return SignUpScreen.routePath;
+          // ユーザーがログインしていないかつ '/SignUp' か '/SignIn'以外のScreenの場合SignUpScreenに移動。
+          // if文にしないとログインしてない時は全てSignUpScreenに行ってしまう。
+          if (!state.location.startsWith(SignUpScreen.routePath) &&
+              !state.location.startsWith(SignInScreen.routePath)) {
+            return SignUpScreen.routePath;
+          }
         }
         // nullを返すと、もともと飛ぶ場所に移動する。
         return null;
