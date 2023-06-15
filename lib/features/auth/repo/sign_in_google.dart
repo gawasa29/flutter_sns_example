@@ -3,6 +3,7 @@ import 'package:flutter_sns_example/features/auth/repo/refs/auth_refs.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 Future<UserCredential> signInGoogle() async {
+  print('🐯 signInGoogle IN !!!');
   // 認証フローをトリガーする
   final googleUser = await GoogleSignIn().signIn();
 

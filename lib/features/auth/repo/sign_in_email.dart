@@ -4,6 +4,6 @@ Future<void> signInEmail({
   required String email,
   required String password,
 }) async {
-  print('🐯 signInEmail Now !!!');
+  print('🐯 signInEmail IN !!!');
   await authRef.signInWithEmailAndPassword(email: email, password: password);
 }

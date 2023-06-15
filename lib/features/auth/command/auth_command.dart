@@ -29,6 +29,7 @@ class AuthCommand extends AsyncNotifier<void> {
     required String password,
     required BuildContext context,
   }) async {
+    print('🐯 signUpEvent IN !!!');
     try {
       state = const AsyncLoading();
       await signUpEmail(
@@ -48,6 +49,7 @@ class AuthCommand extends AsyncNotifier<void> {
     required String password,
     required BuildContext context,
   }) async {
+    print('🐯 signInEvent IN !!!');
     try {
       state = const AsyncLoading();
       await signInEmail(email: email, password: password);
@@ -62,6 +64,7 @@ class AuthCommand extends AsyncNotifier<void> {
   Future<void> signInGoogleEvent({
     required BuildContext context,
   }) async {
+    print('🐯 signInGoogleEvent IN !!!');
     try {
       state = const AsyncLoading();
       await signInGoogle();
@@ -74,6 +77,7 @@ class AuthCommand extends AsyncNotifier<void> {
   }
 
   Future<void> signOutEvent() async {
+    print('🐯 signOutEvent IN !!!');
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(
       () async => signOut(),
@@ -84,6 +88,7 @@ class AuthCommand extends AsyncNotifier<void> {
     required String email,
     required BuildContext context,
   }) async {
+    print('🐯 resetPasswordEvent IN !!!');
     try {
       state = const AsyncLoading();
       await resetPassword(
@@ -107,6 +112,7 @@ class AuthCommand extends AsyncNotifier<void> {
   Future<void> deleteAuthEvent({
     required BuildContext context,
   }) async {
+    print('🐯 deleteAuthEvent IN !!!');
     try {
       state = const AsyncLoading();
       await deleteAuth();
