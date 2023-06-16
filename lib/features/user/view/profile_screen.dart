@@ -1,9 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_sns_example/common/utils/shimmer.dart';
 import 'package:flutter_sns_example/features/auth/command/auth_command.dart';
 import 'package:flutter_sns_example/features/user/query/user_query.dart';
+import 'package:flutter_sns_example/features/user/view/component/user_image.dart';
 import 'package:flutter_sns_example/features/user/view/edit_profile_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -72,34 +71,6 @@ class _ProfilePic extends ConsumerWidget {
             child: const Icon(Icons.edit),
           )
         ],
-      ),
-    );
-  }
-}
-
-class UserImage extends StatelessWidget {
-  const UserImage({
-    required this.profilePic,
-    required this.radius,
-    super.key,
-  });
-  final String profilePic;
-  final double radius;
-
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: radius,
-      child: CachedNetworkImage(
-        imageUrl: profilePic,
-        placeholder: (context, url) => profileImageShimmer(radius),
-        errorWidget: (context, url, error) => CircleAvatar(
-          radius: radius,
-        ),
-        imageBuilder: (context, imageProvider) => CircleAvatar(
-          backgroundImage: imageProvider,
-          radius: radius,
-        ),
       ),
     );
   }

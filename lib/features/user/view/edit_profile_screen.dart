@@ -4,7 +4,7 @@ import 'package:flutter_sns_example/common/utils/loader.dart';
 import 'package:flutter_sns_example/common/validate/validate.dart';
 import 'package:flutter_sns_example/features/user/command/user_command.dart';
 import 'package:flutter_sns_example/features/user/query/user_query.dart';
-import 'package:flutter_sns_example/features/user/view/profile_screen.dart';
+import 'package:flutter_sns_example/features/user/view/component/user_image.dart';
 
 class EditProfileScreen extends ConsumerWidget {
   const EditProfileScreen({super.key});
