@@ -47,6 +47,10 @@
 		<true />
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true />
+		<!-- image_pickerの記載: ここから -->
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string> </string>
+		<!-- image_pickerの記載: ここまで -->
 		<!-- googleの認証で記載: ここから -->
 		<key>CFBundleURLTypes</key>
 		<array>

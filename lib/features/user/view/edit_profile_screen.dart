@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sns_example/common/utils/loader.dart';
+import 'package:flutter_sns_example/common/utils/pickImage.dart';
 import 'package:flutter_sns_example/common/validate/validate.dart';
 import 'package:flutter_sns_example/features/user/command/user_command.dart';
 import 'package:flutter_sns_example/features/user/query/user_query.dart';
@@ -25,6 +26,7 @@ class EditProfileScreen extends ConsumerWidget {
 
     final userCommand = ref.read(userAsyncNotifierCommand.notifier);
     final state = ref.read(userAsyncNotifierCommand);
+    print(state.isLoading);
     return Scaffold(
       appBar: AppBar(),
       body: Stack(
@@ -49,7 +51,6 @@ class EditProfileScreen extends ConsumerWidget {
                           if (formKey.currentState!.validate()) {
                             await userCommand.updateUserEvent(
                               name: nameController.text,
-                              profilePic: currentProfilePic,
                               bio: bioController.text,
                             );
                           }
@@ -86,7 +87,14 @@ class _ProfilePic extends ConsumerWidget {
         UserImage(profilePic: profilePic, radius: 64),
         FloatingActionButton(
           mini: true,
-          onPressed: () async {},
+          onPressed: () async {
+            final selectedImage = await pickCropImage();
+            if (selectedImage != null) {
+              await ref
+                  .read(userAsyncNotifierCommand.notifier)
+                  .updateProfilePicEvent(file: selectedImage);
+            }
+          },
           child: const Icon(Icons.photo),
         )
       ],
