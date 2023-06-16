@@ -8,6 +8,7 @@ import 'package:flutter_sns_example/features/chat/view/chat_room_list_screen.dar
 import 'package:flutter_sns_example/features/notification/view/notification_screen.dart';
 import 'package:flutter_sns_example/features/post/view/home_screen.dart';
 import 'package:flutter_sns_example/features/search/view/search_screen.dart';
+import 'package:flutter_sns_example/features/user/view/edit_profile_screen.dart';
 import 'package:flutter_sns_example/features/user/view/profile_screen.dart';
 import 'package:flutter_sns_example/routing/scaffold_with_bottom_nav_bar.dart';
 import 'package:go_router/go_router.dart';
@@ -109,6 +110,12 @@ final routerProvider = Provider(
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: ProfileScreen(),
               ),
+              routes: [
+                GoRoute(
+                  path: EditProfileScreen.routePath,
+                  builder: (context, state) => const EditProfileScreen(),
+                )
+              ],
             ),
           ],
         )

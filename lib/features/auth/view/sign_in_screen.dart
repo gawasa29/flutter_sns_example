@@ -78,7 +78,6 @@ class SignInScreen extends ConsumerWidget {
                                 await authCommand.signInEvent(
                                   email: emailController.text,
                                   password: passwordController.text,
-                                  context: context,
                                 );
                               }
                             },

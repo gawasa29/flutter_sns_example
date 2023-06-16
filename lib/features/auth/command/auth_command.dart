@@ -6,11 +6,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sns_example/common/error/auth_error.dart';
 import 'package:flutter_sns_example/common/utils/toast.dart';
 import 'package:flutter_sns_example/features/auth/repo/delete_auth.dart';
+import 'package:flutter_sns_example/features/auth/repo/refs/auth_refs.dart';
 import 'package:flutter_sns_example/features/auth/repo/reset_password.dart';
 import 'package:flutter_sns_example/features/auth/repo/sign_in_email.dart';
 import 'package:flutter_sns_example/features/auth/repo/sign_in_google.dart';
 import 'package:flutter_sns_example/features/auth/repo/sign_out.dart';
 import 'package:flutter_sns_example/features/auth/repo/sign_up_email.dart';
+import 'package:flutter_sns_example/features/user/domain/user_entity.dart';
+import 'package:flutter_sns_example/features/user/repo/create_user.dart';
 import 'package:go_router/go_router.dart';
 
 final authAsyncNotifierCommand = AsyncNotifierProvider<AuthCommand, void>(() {
@@ -25,9 +28,9 @@ class AuthCommand extends AsyncNotifier<void> {
   }
 
   Future<void> signUpEvent({
+    required String name,
     required String email,
     required String password,
-    required BuildContext context,
   }) async {
     print('🐯 signUpEvent IN !!!');
     try {
@@ -36,6 +39,16 @@ class AuthCommand extends AsyncNotifier<void> {
         email: email,
         password: password,
       );
+      final user = UserEntity(
+        name: name,
+        userId: authRef.currentUser!.uid,
+        profilePic:
+            'https://firebasestorage.googleapis.com/v0/b/pretty-post.appspot.com/o/placeholder.png?alt=media&token=2a883138-dd2c-4480-8c21-1139173770fb',
+        bio: '',
+        followerNum: 0,
+        followingNum: 0,
+      );
+      await createUser(user);
       state = const AsyncValue.data(null);
     } on FirebaseAuthException catch (err) {
       final errorMessage = FirebaseAuthErrorExt.fromCode(err.code).message;
@@ -47,7 +60,6 @@ class AuthCommand extends AsyncNotifier<void> {
   Future<void> signInEvent({
     required String email,
     required String password,
-    required BuildContext context,
   }) async {
     print('🐯 signInEvent IN !!!');
     try {
@@ -61,9 +73,7 @@ class AuthCommand extends AsyncNotifier<void> {
     }
   }
 
-  Future<void> signInGoogleEvent({
-    required BuildContext context,
-  }) async {
+  Future<void> signInGoogleEvent() async {
     print('🐯 signInGoogleEvent IN !!!');
     try {
       state = const AsyncLoading();

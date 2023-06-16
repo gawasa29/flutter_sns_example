@@ -14,6 +14,7 @@ class SignUpScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     print('📱 SignUpScreen !!! ');
     final emailController = TextEditingController();
+    final nameController = TextEditingController();
     final passwordController = TextEditingController();
     final confirmPasswordController = TextEditingController();
     final formKey = GlobalKey<FormState>();
@@ -48,6 +49,13 @@ class SignUpScreen extends ConsumerWidget {
                           ],
                         ),
                         TextFormField(
+                          maxLength: 10,
+                          controller: nameController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(hintText: 'Name'),
+                          validator: validate,
+                        ),
+                        TextFormField(
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(hintText: 'Email'),
@@ -78,9 +86,9 @@ class SignUpScreen extends ConsumerWidget {
                             onPressed: () async {
                               if (formKey.currentState!.validate()) {
                                 await authCommand.signUpEvent(
+                                  name: nameController.text,
                                   email: emailController.text,
                                   password: passwordController.text,
-                                  context: context,
                                 );
                               }
                             },
@@ -99,9 +107,7 @@ class SignUpScreen extends ConsumerWidget {
                               'Sign in with Google',
                             ),
                             onPressed: () async {
-                              await authCommand.signInGoogleEvent(
-                                context: context,
-                              );
+                              await authCommand.signInGoogleEvent();
                             },
                           ),
                         ),

@@ -16,6 +16,13 @@ String? validateEmail(String? value) {
   return null;
 }
 
+String? validate(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'required';
+  }
+  return null;
+}
+
 String? validatePassword(String? value) {
   if (value == null || value.isEmpty) {
     return 'Password is required';
